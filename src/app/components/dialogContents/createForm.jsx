@@ -1,5 +1,4 @@
 import { Button, Select, TextField } from "@material-ui/core";
-import { Watch } from "@material-ui/icons";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import ReactInputMask from "react-input-mask";
@@ -187,6 +186,7 @@ export default function CreateForm() {
             <div className="w-full flex justify-around my-4" key={index}>
               <ReactInputMask
                 mask={
+                  // eslint-disable-next-line
                   watch(`phones[${index}].type`) == 3
                     ? "(99) 99999-9999"
                     : "(99) 9999-9999"

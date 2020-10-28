@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector, useStore } from "react-redux";
 import { Redirect } from "react-router-dom";
 import Table from "../../components/Table";
@@ -18,6 +18,7 @@ export default function Dashboard(props) {
       const gettedClients = await dashboardService.getAllClients(store);
       dispatch(clientActions.setClients(gettedClients));
     })();
+    // eslint-disable-next-line
   }, []);
 
   return (

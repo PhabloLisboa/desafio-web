@@ -1,5 +1,5 @@
-import { Button, Select, TextField } from "@material-ui/core";
-import React, { useState } from "react";
+import { Button, TextField } from "@material-ui/core";
+import React from "react";
 import { useForm } from "react-hook-form";
 import ReactInputMask from "react-input-mask";
 import { useDispatch, useSelector, useStore } from "react-redux";
@@ -12,7 +12,7 @@ export default function EditForm() {
   const client = useSelector((state) => state.Dialog.data);
   const dispatch = useDispatch();
   const store = useStore();
-  const { register, handleSubmit, watch, setValue } = useForm({
+  const { register, handleSubmit, setValue } = useForm({
     defaultValues: {
       name: client.name || "",
       cpf: client.cpf || "",

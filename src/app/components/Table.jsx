@@ -13,15 +13,12 @@ import {
 import Create from "@material-ui/icons/Create";
 import Visibility from "@material-ui/icons/Visibility";
 import Delete from "@material-ui/icons/Delete";
-import { useDispatch, useSelector, useStore } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import * as dialogActions from "../store/actions/DialogActions";
-import dashboardService from "../pages/dashboard/dashboardService";
-import * as clientActions from "../store/actions/clientActions";
 import StringMask from "string-mask";
 
 export default function TableClients() {
   const dispatch = useDispatch();
-  const store = useStore();
   let cpfFormatter = new StringMask("000.000.000-00");
   const clients = useSelector((state) => state.Client.clients);
 

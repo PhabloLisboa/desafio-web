@@ -1,6 +1,5 @@
 import React from "react";
-import { AppBar, IconButton, Toolbar, Typography } from "@material-ui/core";
-import ExitToApp from "@material-ui/icons/ExitToApp";
+import { AppBar, Toolbar, Typography } from "@material-ui/core";
 
 export default function internalLayout(props) {
   return (

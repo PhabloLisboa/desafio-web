@@ -1,13 +1,11 @@
-import { Button, TextField, Typography } from "@material-ui/core";
-import React, { useState } from "react";
-import { useForm } from "react-hook-form";
+import { Button, Typography } from "@material-ui/core";
+import React from "react";
 import { useDispatch, useSelector, useStore } from "react-redux";
 import dashboardService from "../../pages/dashboard/dashboardService";
 import * as clientActions from "../../store/actions/clientActions";
 import * as dialogActions from "../../store/actions/DialogActions";
 
 export default function DeleteForm() {
-  const { register, handleSubmit } = useForm();
   const client = useSelector((state) => state.Dialog.data);
   const dispatch = useDispatch();
   const store = useStore();
