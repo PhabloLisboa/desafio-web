@@ -1,4 +1,4 @@
-## Available Scripts
+## Sobre
 
 Para vizualizar o projeto há dois script possiveis
 
