@@ -1,10 +1,18 @@
 ## Sobre
 
-Para vizualizar o projeto há dois script possiveis
+Para vizualizar o projeto siga os passos
+
+### git clone https://github.com/PhabloLisboa/desafio-web
+
+Clone o projeto
+
+### `npm i`
+
+Instale as Dependências
 
 ### `npm start`
 
-Ficará disponível no endereço: [http://localhost:3000](http://localhost:3000).
+Inicie. Ficará disponível no endereço: [http://localhost:3000](http://localhost:3000).
 
 ### `npm build`
 
