@@ -36,7 +36,6 @@ export default function CreateForm() {
         setValue("address.bairro", resp.data.bairro);
         setValue("address.uf", resp.data.uf);
         setValue("address.complemento", resp.data.complemento);
-        console.log(resp.data);
       });
     }
   };

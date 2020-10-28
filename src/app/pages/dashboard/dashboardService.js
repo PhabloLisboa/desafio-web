@@ -1,9 +1,10 @@
 import axios from "axios";
+import environment from "../../environment";
 import * as errorActions from "../../store/actions/errorAction";
 class DashboardService {
   async getAllClients(store) {
     try {
-      const clients = await axios.get("http://localhost:8080/clients");
+      const clients = await axios.get(`${environment.linkAPI}/clients`);
 
       return clients.data;
     } catch (e) {
@@ -14,7 +15,7 @@ class DashboardService {
 
   async getOne(id, store) {
     try {
-      const client = await axios.get(`http://localhost:8080/client?id=${id}`);
+      const client = await axios.get(`${environment.linkAPI}/client?id=${id}`);
 
       return client.data;
     } catch (e) {
@@ -25,11 +26,10 @@ class DashboardService {
 
   async createClient(data, store) {
     try {
-      const clients = await axios.post("http://localhost:8080/clients", data);
+      const clients = await axios.post(`${environment.linkAPI}/clients`, data);
 
       return clients.data;
     } catch (e) {
-      console.log(e);
       store.dispatch(errorActions.setError("Erro ao Cadastrar cliente"));
       return null;
     }
@@ -38,13 +38,12 @@ class DashboardService {
   async updateClient(data, id, store) {
     try {
       const clients = await axios.put(
-        `http://localhost:8080/clients?id=${id}`,
+        `${environment.linkAPI}/clients?id=${id}`,
         data
       );
 
       return clients.data;
     } catch (e) {
-      console.log(e);
       store.dispatch(errorActions.setError("Erro ao atualizar cliente"));
       return null;
     }
@@ -53,12 +52,11 @@ class DashboardService {
   async deleteClient(id, store) {
     try {
       const clients = await axios.delete(
-        `http://localhost:8080/clients?id=${id}`
+        `${environment.linkAPI}/clients?id=${id}`
       );
 
       return clients.data;
     } catch (e) {
-      console.log(e);
       store.dispatch(errorActions.setError("Erro ao Excluir cliente"));
       return null;
     }

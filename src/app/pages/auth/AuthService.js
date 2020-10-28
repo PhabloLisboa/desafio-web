@@ -1,9 +1,10 @@
 import axios from "axios";
+import environment from "../../environment";
 import * as errorActions from "../../store/actions/errorAction";
 class AuthService {
   async login(data, store) {
     try {
-      const user = await axios.post("http://localhost:8080/login", data);
+      const user = await axios.post(`${environment.linkAPI}/login`, data);
 
       return user;
     } catch (e) {
