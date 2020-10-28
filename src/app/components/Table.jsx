@@ -13,22 +13,18 @@ import {
 import Create from "@material-ui/icons/Create";
 import Visibility from "@material-ui/icons/Visibility";
 import Delete from "@material-ui/icons/Delete";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector, useStore } from "react-redux";
 import * as dialogActions from "../store/actions/DialogActions";
-
-const rows = [
-  createData("Frozen yoghurt", 159, 6),
-  createData("Ice cream sandwich", 237, 5),
-  createData("Eclair", 262, 5),
-  createData("Cupcake", 305, 5),
-  createData("Gingerbread", 356.5),
-];
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
+import dashboardService from "../pages/dashboard/dashboardService";
+import * as clientActions from "../store/actions/clientActions";
+import StringMask from "string-mask";
 
 export default function TableClients() {
   const dispatch = useDispatch();
+  const store = useStore();
+  let cpfFormatter = new StringMask("000.000.000-00");
+  const clients = useSelector((state) => state.Client.clients);
+
   return (
     <TableContainer component={Paper}>
       <Table aria-label="simple table">
@@ -49,27 +45,33 @@ export default function TableClients() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.name}>
+          {clients.map((client, index) => (
+            <TableRow key={client.name}>
               <TableCell component="th" scope="row">
-                {row.name}
+                {client.name}
               </TableCell>
-              <TableCell align="center">{row.calories}</TableCell>
-              <TableCell align="center">{row.fat}</TableCell>
+              <TableCell align="center">{client.emails[0].email}</TableCell>
+              <TableCell align="center">
+                {cpfFormatter.apply(client.cpf)}
+              </TableCell>
               <TableCell align="center">
                 <IconButton
-                  onClick={() => dispatch(dialogActions.openDialog("edit", {}))}
+                  onClick={() =>
+                    dispatch(dialogActions.openDialog("edit", client))
+                  }
                 >
                   <Create />
                 </IconButton>
                 <IconButton
-                  onClick={() => dispatch(dialogActions.openDialog("view", {}))}
+                  onClick={() =>
+                    dispatch(dialogActions.openDialog("view", client))
+                  }
                 >
                   <Visibility />
                 </IconButton>
                 <IconButton
                   onClick={() =>
-                    dispatch(dialogActions.openDialog("delete", {}))
+                    dispatch(dialogActions.openDialog("delete", client))
                   }
                 >
                   <Delete />

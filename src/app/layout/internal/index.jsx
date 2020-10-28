@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  AppBar,
-  Button,
-  Grid,
-  IconButton,
-  Toolbar,
-  Typography,
-} from "@material-ui/core";
+import { AppBar, IconButton, Toolbar, Typography } from "@material-ui/core";
 import ExitToApp from "@material-ui/icons/ExitToApp";
 
 export default function internalLayout(props) {
@@ -18,13 +11,6 @@ export default function internalLayout(props) {
             <Typography className="self-center" variant="h6">
               Clientes
             </Typography>
-            <IconButton
-              variant="contained"
-              title="Sair"
-              style={{ color: "white " }}
-            >
-              <ExitToApp />
-            </IconButton>
           </div>
         </Toolbar>
       </AppBar>

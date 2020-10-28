@@ -1,7 +1,6 @@
 import Login from "./auth/Login";
 import Dashboard from "./dashboard/Dashboard";
-
-export default [
+const Routes = [
   {
     path: "/",
     component: Login,
@@ -11,3 +10,4 @@ export default [
     component: Dashboard,
   },
 ];
+export default Routes;

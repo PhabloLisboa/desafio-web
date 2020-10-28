@@ -1,21 +1,26 @@
-import { Button, Grid, Paper, TextField, Typography } from "@material-ui/core";
+import { Button, Paper, TextField, Typography } from "@material-ui/core";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector, useStore } from "react-redux";
 import AuthService from "./AuthService";
 import * as authActions from "../../store/actions/authAction";
 import { Redirect } from "react-router-dom";
+import { Alert } from "@material-ui/lab";
+import * as errorActions from "../../store/actions/errorAction";
 
 export default function Login() {
-  const { register, handleSubmit, errors } = useForm();
+  const { register, handleSubmit } = useForm();
   const dispatch = useDispatch();
+  const store = useStore();
+  const error = useSelector((state) => state.Error);
   const [logged, setLogged] = useState(false);
 
   const onSubmit = async (data) => {
-    const token = await AuthService.login(data);
+    const user = await AuthService.login(data, store);
 
-    if (token) {
-      dispatch(authActions.login(token));
+    if (user) {
+      dispatch(authActions.login("jwt_token"));
+      dispatch(errorActions.clearError());
       setLogged(true);
     }
   };
@@ -26,7 +31,11 @@ export default function Login() {
         <Typography component="h1" variant="h4">
           LogIn
         </Typography>
-
+        {error.hasError && (
+          <Alert severity="error" className="mb-16" color="error">
+            {error.message}
+          </Alert>
+        )}
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="flex flex-col justify-bewteen sm:w-full"
