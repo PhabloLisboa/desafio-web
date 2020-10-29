@@ -6,7 +6,7 @@ class AuthService {
     try {
       const user = await axios.post(`${environment.linkAPI}/login`, data);
 
-      return user;
+      return user.data;
     } catch (e) {
       store.dispatch(errorActions.setError("Usuário ou senha incorreto!"));
       return null;

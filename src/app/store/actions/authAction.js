@@ -1,10 +1,11 @@
 export const LOGIN = "LOGIN";
 export const LOGOUT = "LOGOUT";
 
-export function login(token) {
+export function login(token, user) {
   localStorage.setItem("token", token);
   return {
     token,
+    user,
     type: LOGIN,
   };
 }

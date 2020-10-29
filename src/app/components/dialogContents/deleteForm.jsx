@@ -27,7 +27,7 @@ export default function DeleteForm() {
         <h2>Remover Cliente</h2>
       </strong>
       <Typography variant="subtitle1">
-        Tem certeza que desejá remover <strong>sdas</strong>
+        Tem certeza que desejá remover <strong>{client.name}</strong>
       </Typography>
       <div className="w-full flex justify-around my-8">
         <Button variant="contained" color="primary">

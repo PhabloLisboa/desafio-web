@@ -21,6 +21,7 @@ export default function TableClients() {
   const dispatch = useDispatch();
   let cpfFormatter = new StringMask("000.000.000-00");
   const clients = useSelector((state) => state.Client.clients);
+  const user = useSelector((state) => state.Auth.user);
 
   return (
     <TableContainer component={Paper}>
@@ -52,13 +53,15 @@ export default function TableClients() {
                 {cpfFormatter.apply(client.cpf)}
               </TableCell>
               <TableCell align="center">
-                <IconButton
-                  onClick={() =>
-                    dispatch(dialogActions.openDialog("edit", client))
-                  }
-                >
-                  <Create />
-                </IconButton>
+                {user && user.role.description === "Administrador" && (
+                  <IconButton
+                    onClick={() =>
+                      dispatch(dialogActions.openDialog("edit", client))
+                    }
+                  >
+                    <Create />
+                  </IconButton>
+                )}
                 <IconButton
                   onClick={() =>
                     dispatch(dialogActions.openDialog("view", client))
@@ -66,13 +69,15 @@ export default function TableClients() {
                 >
                   <Visibility />
                 </IconButton>
-                <IconButton
-                  onClick={() =>
-                    dispatch(dialogActions.openDialog("delete", client))
-                  }
-                >
-                  <Delete />
-                </IconButton>
+                {user && user.role.description === "Administrador" && (
+                  <IconButton
+                    onClick={() =>
+                      dispatch(dialogActions.openDialog("delete", client))
+                    }
+                  >
+                    <Delete />
+                  </IconButton>
+                )}
               </TableCell>
             </TableRow>
           ))}

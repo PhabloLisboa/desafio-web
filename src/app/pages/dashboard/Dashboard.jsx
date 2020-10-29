@@ -12,6 +12,7 @@ export default function Dashboard(props) {
   const logged = useSelector((state) => state.Auth.logged);
   const dispatch = useDispatch();
   const store = useStore();
+  const user = useSelector((state) => state.Auth.user);
 
   useEffect(() => {
     (async () => {
@@ -24,15 +25,18 @@ export default function Dashboard(props) {
   return (
     <div className="pt-8">
       {!logged && <Redirect to="/" />}
-      <Button
-        variant="contained"
-        color="primary"
-        className=" m-2 "
-        style={{ margin: "1rem" }}
-        onClick={() => dispatch(dialogActions.openDialog("create", {}))}
-      >
-        Adicionar
-      </Button>
+      {user && user.role.description === "Administrador" && (
+        <Button
+          variant="contained"
+          color="primary"
+          className=" m-2 "
+          style={{ margin: "1rem" }}
+          onClick={() => dispatch(dialogActions.openDialog("create", {}))}
+        >
+          Adicionar
+        </Button>
+      )}
+
       <Dialog />
       <Table />
     </div>

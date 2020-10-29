@@ -19,7 +19,7 @@ export default function Login() {
     const user = await AuthService.login(data, store);
 
     if (user) {
-      dispatch(authActions.login("jwt_token"));
+      dispatch(authActions.login("jwt_token", user));
       dispatch(errorActions.clearError());
       setLogged(true);
     }

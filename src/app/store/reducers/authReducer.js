@@ -12,6 +12,7 @@ const Auth = (
       return {
         ...state,
         token: action.token,
+        user: action.user,
         logged: true,
       };
     case AuthActions.LOGOUT:
